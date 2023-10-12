@@ -1,0 +1,76 @@
+[build-system]
+requires = ["flit-scm", "wheel"]
+build-backend = "flit_scm:buildapi"
+
+[project]
+name = "flit-gettext"
+authors = [
+  { name = "Johannes Maron", email = "johannes@maron.family" },
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["flit", "pep518", "build", "packaging", "gettext"]
+dynamic = ["version", "description"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python",
+  "Environment :: Web Environment",
+  "License :: OSI Approved :: BSD License",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "flit-core~=3.5",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-cov",
+  "flit-scm",
+]
+scm = [
+  "flit-scm",
+]
+
+[project.urls]
+Project-URL = "https://github.com/codingjoe/flit-gettext"
+Changelog = "https://github.com/codingjoe/flit-gettext/releases"
+
+[tool.flit.module]
+name = "flit_gettext"
+
+[tool.setuptools_scm]
+write_to = "flit_gettext/_version.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov --tb=short -rxs"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["flit_gettext"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.isort]
+atomic = true
+line_length = 88
+known_first_party = "flit_gettext, tests"
+include_trailing_comma = true
+default_section = "THIRDPARTY"
+combine_as_imports = true
+
+[tool.pydocstyle]
+add_ignore = "D1"
