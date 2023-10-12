@@ -27,7 +27,7 @@ def test_build_sdist(package):
     output = subprocess.check_output(
         ["python", "-m", "build", "--sdist"],
         cwd=package,
-        env=os.environ | {"PYTHONPATH": f".:{ROOT}"},
+        env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
     )
 
     # Check that the gettext compilation was logged
@@ -56,7 +56,7 @@ def test_build_wheel(package):
     output = subprocess.check_output(
         ["python", "-m", "build", "--wheel"],
         cwd=package,
-        env=os.environ | {"PYTHONPATH": f".:{ROOT}"},
+        env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
     )
 
     # Check that the gettext compilation was logged
