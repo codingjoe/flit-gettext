@@ -41,7 +41,7 @@ def package_scm():
             'requires = ["flit_core >=3.0.0,<4", "flit_scm"]\n'
             'build-backend = "flit_gettext.scm"\n'
             "[tool.setuptools_scm]\n"
-            'write_to = "flit_gettext/_version.py"\n'
+            'write_to = "package/_version.py"\n'
             'fallback_version = "0.1.0"\n'
         )
         (temp_dir / "package").mkdir(parents=True)

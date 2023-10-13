@@ -62,6 +62,7 @@ testpaths = ["tests"]
 
 [tool.coverage.run]
 source = ["flit_gettext"]
+omit = ["flit_gettext/_version.py"]
 
 [tool.coverage.report]
 show_missing = true
