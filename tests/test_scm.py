@@ -6,10 +6,10 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 
 
-def test_build_sdist(package):
+def test_build_sdist(package_scm):
     """Test that build_wheel() compiles gettext translations."""
     # Create a dummy .po file
-    po = package / "package/locale/en/LC_MESSAGES/django.po"
+    po = package_scm / "package/locale/en/LC_MESSAGES/django.po"
     po.parent.mkdir(parents=True)
     po.write_text(
         r"""
@@ -27,7 +27,7 @@ def test_build_sdist(package):
 
     output = subprocess.check_output(
         ["python", "-m", "build", "--sdist"],
-        cwd=package,
+        cwd=package_scm,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
     )
 
@@ -35,10 +35,10 @@ def test_build_sdist(package):
     assert b"* Compiling gettext translations..." not in output
 
 
-def test_build_wheel(package):
+def test_build_wheel(package_scm):
     """Test that build_wheel() compiles gettext translations."""
     # Create a dummy .po file
-    po = package / "package/locale/en/LC_MESSAGES/django.po"
+    po = package_scm / "package/locale/en/LC_MESSAGES/django.po"
     po.parent.mkdir(parents=True)
     po.write_text(
         r"""
@@ -56,7 +56,7 @@ def test_build_wheel(package):
 
     output = subprocess.check_output(
         [sys.executable, "-m", "build", "--wheel"],
-        cwd=package,
+        cwd=package_scm,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
     )
 
@@ -64,10 +64,10 @@ def test_build_wheel(package):
     assert b"* Compiling gettext translations..." in output
 
 
-def test_editable_editable(package):
+def test_editable_editable(package_scm):
     """Test that build_editable() compiles gettext translations."""
     # Create a dummy .po file
-    po = package / "package/locale/en/LC_MESSAGES/django.po"
+    po = package_scm / "package/locale/en/LC_MESSAGES/django.po"
     po.parent.mkdir(parents=True)
     po.write_text(
         r"""
@@ -83,7 +83,7 @@ def test_editable_editable(package):
         """
     )
 
-    packages_dir = package / "packages"
+    packages_dir = package_scm / "packages"
     packages_dir.mkdir(parents=True)
 
     output = subprocess.check_output(
@@ -98,7 +98,7 @@ def test_editable_editable(package):
             "-e",
             ".",
         ],
-        cwd=package,
+        cwd=package_scm,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}", "PEP517_BACKEND_PATH": str(ROOT)},
         stderr=subprocess.STDOUT,
     )
