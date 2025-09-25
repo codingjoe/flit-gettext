@@ -50,8 +50,7 @@ def test_compile_gettext_translations__invalid(capsys, package):
 
 def test_compile_gettext_translations__no_gettext(capsys, package, monkeypatch):
     monkeypatch.setenv("PATH", "")
-    with pytest.raises(OSError) as excinfo:
+    with pytest.raises(OSError, match="msgfmt not found"):
         flit_gettext.utils.compile_gettext_translations(
             type("LoadedConfig", (), {"module": "package"})()
         )
-    assert "msgfmt not found" in str(excinfo.value)

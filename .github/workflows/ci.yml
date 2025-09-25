@@ -25,21 +25,20 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         lint-command:
-          - bandit -r . -x ./tests
-          - black --check --diff .
-          - flake8 .
-          - isort --check-only --diff .
-          - pydocstyle .
+          - ruff format --check .
+          - ruff check --output-format=github .
+          - pyupgrade `git ls-files | grep .py`
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.x"
-          cache: 'pip'
-          cache-dependency-path: 'linter-requirements.txt'
-      - run: python -m pip install -r linter-requirements.txt
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - run: python -m pip install .[lint]
       - run: ${{ matrix.lint-command }}
 
   pytest:

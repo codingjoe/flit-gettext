@@ -25,8 +25,8 @@ def test_build_sdist(package):
         """
     )
 
-    output = subprocess.check_output(
-        ["python", "-m", "build", "--sdist"],
+    output = subprocess.check_output(  # noqa: S603
+        [sys.executable, "-m", "build", "--sdist"],
         cwd=package,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
     )
@@ -54,7 +54,7 @@ def test_build_wheel(package):
         """
     )
 
-    output = subprocess.check_output(
+    output = subprocess.check_output(  # noqa: S603
         [sys.executable, "-m", "build", "--wheel"],
         cwd=package,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
@@ -86,7 +86,7 @@ def test_editable_editable(package):
     packages_dir = package / "packages"
     packages_dir.mkdir(parents=True)
 
-    output = subprocess.check_output(
+    output = subprocess.check_output(  # noqa: S603
         [
             sys.executable,
             "-m",

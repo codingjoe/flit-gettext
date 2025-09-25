@@ -41,6 +41,10 @@ test = [
   "build",
   "wheel",
 ]
+lint = [
+  "ruff==0.13.1",
+  "pyupgrade==3.20.0",
+]
 scm = [
   "flit-scm",
 ]
@@ -77,3 +81,51 @@ combine_as_imports = true
 
 [tool.pydocstyle]
 add_ignore = "D1"
+
+[tool.ruff]
+src = ["flit_gettext", "tests"]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+preview = true
+
+[tool.ruff.lint]
+select = [
+    "D", # pydocstyle
+    "E", # pycodestyle errors
+    "EXE", # flake8-executable
+    "F", # pyflakes
+    "I", # isort
+    "PGH", # pygrep-hooks
+    "PT", # flake8-pytest-style
+    "RET", # flake8-return
+    "S", # flake8-bandit
+    "SIM", # flake8-simplify
+    "UP", # pyupgrade
+    "W", # pycodestyle warnings
+]
+
+ignore = ["D1"]
+
+[tool.ruff.lint.per-file-ignores]
+"*/test*.py" = ["S101", "PLR2004"]
+"*/migrations/*.py" = ["E501"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = true
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+force-wrap-aliases = true
+known-first-party = ["flit_gettext", "tests"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
