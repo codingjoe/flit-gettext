@@ -16,4 +16,4 @@ def compile_gettext_translations(config):
     for file in Path().rglob(f"{config.module}/**/*.po"):
         file = Path(file)
         cmd = [msgfmt, "-c", "-o", file.parent / f"{file.stem}.mo", file]
-        subprocess.check_output(cmd)  # nosec
+        subprocess.check_output(cmd)  # noqa: S603

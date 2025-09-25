@@ -1,5 +1,5 @@
 from flit_core import buildapi
-from flit_core.buildapi import *  # noqa
+from flit_core.buildapi import *  # noqa: F403
 
 from flit_gettext.utils import compile_gettext_translations
 

@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
 def package():
     with tempfile.TemporaryDirectory() as tmpdirname:
         temp_dir = Path(tmpdirname)
@@ -27,7 +27,7 @@ def package():
             yield temp_dir
 
 
-@pytest.fixture()
+@pytest.fixture
 def package_scm():
     with tempfile.TemporaryDirectory() as tmpdirname:
         temp_dir = Path(tmpdirname)
