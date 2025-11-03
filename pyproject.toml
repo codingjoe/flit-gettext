@@ -42,10 +42,6 @@ test = [
   "build",
   "wheel",
 ]
-lint = [
-  "ruff==0.14.2",
-  "pyupgrade==3.21.0",
-]
 scm = [
   "flit-scm",
 ]
