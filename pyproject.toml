@@ -35,15 +35,21 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+scm = [
+  "flit-scm",
+]
+
+[dependency-groups]
+dev = [
+  { include-group = "test" },
+]
 test = [
   "pytest",
   "pytest-cov",
   "flit-scm",
   "build",
   "wheel",
-]
-scm = [
-  "flit-scm",
+  "pip",
 ]
 
 [project.urls]
