@@ -5,6 +5,8 @@ from pathlib import Path
 
 import pytest
 
+PACKAGE_DIR = Path(__file__).parent.parent
+
 
 @pytest.fixture
 def package():
@@ -17,7 +19,7 @@ def package():
             'version = "0.1.0"\n'
             'description = "A package"\n'
             "[build-system]\n"
-            'requires = ["flit_core >=3.0.0,<4"]\n'
+            f'requires = ["flit_core >=3.0.0,<4", "{PACKAGE_DIR}"]\n'
             'build-backend = "flit_gettext.core"\n'
         )
         (temp_dir / "package").mkdir(parents=True)
@@ -38,7 +40,7 @@ def package_scm():
             'description = "A package"\n'
             'dynamic = ["version"]\n'
             "[build-system]\n"
-            'requires = ["flit_core >=3.0.0,<4", "flit_scm"]\n'
+            f'requires = ["flit_core >=3.0.0,<4", "flit_scm", "{PACKAGE_DIR}"]\n'
             'build-backend = "flit_gettext.scm"\n'
             "[tool.setuptools_scm]\n"
             'write_to = "package/_version.py"\n'
