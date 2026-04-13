@@ -30,12 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
+      - run: sudo apt install gettext -y
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: ${{ matrix.python-version }}
-      - run: sudo apt install gettext -y
-      - run: python -m pip install .[test]
-      - run: python -m pytest
+      - run: uv run --no-dev --group=test pytest
       - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
