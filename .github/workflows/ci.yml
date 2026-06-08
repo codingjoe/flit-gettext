@@ -35,6 +35,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: uv run --no-dev --group=test pytest
-      - uses: codecov/codecov-action@v6
+      - uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
