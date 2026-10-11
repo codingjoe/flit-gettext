@@ -25,7 +25,7 @@ def test_build_sdist(package_scm):
         """
     )
 
-    output = subprocess.check_output(  # noqa: S603
+    output = subprocess.check_output(
         [sys.executable, "-m", "build", "--sdist"],
         cwd=package_scm,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
@@ -54,7 +54,7 @@ def test_build_wheel(package_scm):
         """
     )
 
-    output = subprocess.check_output(  # noqa: S603
+    output = subprocess.check_output(
         [sys.executable, "-m", "build", "--wheel"],
         cwd=package_scm,
         env={**os.environ, "PYTHONPATH": f".:{ROOT}"},
