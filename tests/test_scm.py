@@ -86,7 +86,7 @@ def test_editable_editable(package_scm):
     packages_dir = package_scm / "packages"
     packages_dir.mkdir(parents=True)
 
-    output = subprocess.check_output(  # noqa: S603
+    output = subprocess.check_output(
         [
             sys.executable,
             "-m",
