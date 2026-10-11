@@ -102,7 +102,6 @@ def test_editable_editable(package):
         env={
             **os.environ,
             "PYTHONPATH": f".:{ROOT}",
-            "_PYPROJECT_HOOKS_BACKEND_PATH": str(ROOT),
         },
         stderr=subprocess.STDOUT,
     )
