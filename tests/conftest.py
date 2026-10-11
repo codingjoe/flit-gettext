@@ -11,7 +11,8 @@ BACKEND_DIR = PACKAGE_DIR / "flit_gettext"
 
 
 def copy_backend(temp_dir):
-    """Copy the in-tree build backend into the package directory.
+    """
+    Copy the in-tree build backend into the package directory.
 
     ``backend-path`` must point to a directory inside the project.
     """
